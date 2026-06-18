@@ -1,7 +1,6 @@
 const User=require('../models/Auth');
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
-
 exports.register=async(req,res)=>{
  const {username,email,password}=req.body;
  if(!username||!email||!password) return res.status(400).json({message:'All fields required'});
@@ -10,7 +9,6 @@ exports.register=async(req,res)=>{
  const user=await User.create({username,email,password:hash});
  res.status(201).json({message:'Registered',user});
 };
-
 exports.login=async(req,res)=>{
  const {email,password}=req.body;
  const user=await User.findOne({email});
